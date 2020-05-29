@@ -1,0 +1,4 @@
+---
+# defaults file for httpv2
+- name: Print a nice message
+  debug: msg="Welcome V2"
