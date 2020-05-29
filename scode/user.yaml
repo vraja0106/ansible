@@ -1,0 +1,38 @@
+---
+- name: User Mgt
+  hosts: all
+
+  tasks:
+
+
+  - name: Create SSH key 
+    user:
+      name: bala
+      generate_ssh_key: yes
+      ssh_key_bits: 2048
+      ssh_key_file: .ssh/id_rsa
+
+  - name: Add user bala to sudo
+    lineinfile:
+      path: /etc/sudoers.d/bala
+      line: 'ansibleuser ALL=(ALL) NOPASSWD: ALL'
+      state: present
+      mode: 0440
+      create: yes
+      validate: 'visudo -cf %s'
+
+  - ufw:
+      rule: limit
+      port: ssh
+      proto: tcp
+
+
+  - name: Allow all access to tcp port 22
+    ufw:
+      rule: allow
+      port: '22'
+
+
+  - name: enable ufw
+    ufw: state=enabled policy=allow
+

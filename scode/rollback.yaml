@@ -1,0 +1,8 @@
+---
+- name: Rollback
+  hosts: web
+  vars:
+    ansistrano_rollback_to_release: "20200522011754Z"
+    ansistrano_deploy_to: "/tmp/html"
+  roles:
+    - { role: ansistrano.rollback }

@@ -1,0 +1,11 @@
+---
+- name: Deploy
+  hosts: web
+  vars:
+    ansistrano_deploy_from: "html"
+    ansistrano_deploy_to: "/tmp/html"
+    ansistrano_keep_releases: 30
+    # There seems to be an issue with rsync in vagrant
+    ansistrano_deploy_via: copy
+  roles:
+    - { role: ansistrano.deploy }

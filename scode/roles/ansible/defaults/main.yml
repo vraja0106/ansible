@@ -1,0 +1,4 @@
+---
+# defaults file for httpv1
+- name: Print a nice message
+  debug: msg="Welcome to V1"
